@@ -15,7 +15,10 @@ const Rol = sequelize.define(
             unique: true,
         }
     },
-    { freezeTableName: true }
+    {
+        freezeTableName: true,
+        timestamps: false,
+    }
 );
 
 module.exports = Rol;

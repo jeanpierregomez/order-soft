@@ -18,9 +18,10 @@ const Carrito = sequelize.define(
             allowNull: false,
         },
     },
-    { freezeTableName: true,
-    
-        timestamps: false, }
+    {
+        freezeTableName: true,
+        timestamps: false,
+    }
 );
 
 module.exports = Carrito;
