@@ -31,7 +31,7 @@ app.use(morgan(process.env.NODE_ENV));
 app.use(express.json());
 app.use(
 	express.urlencoded({
-		extended: true,
+		extended: false,
 	})
 );
 app.use(express.static(path.join(__dirname, "public")));

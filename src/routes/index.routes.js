@@ -5,5 +5,4 @@ const IndexController = require("../controllers/IndexController");
 
 router.route("/").get(IndexController.index);
 router.use("/login", LoginRoutes);
-
 module.exports = router;
