@@ -1,9 +1,9 @@
 const { Sequelize } = require("sequelize");
 
 const sequelize = new Sequelize("order-soft-db", "root", "", {
-	host: "localhost",
-	dialect: "mysql",
-	logging: false,
+    host: "localhost",
+    dialect: "mysql",
+    logging: false,
 });
 
 exports.sequelize = sequelize;
@@ -24,6 +24,6 @@ const Usuario = require("../models/Usuario");
 const Valoracion = require("../models/Valoracion");
 
 (async () => {
-	await sequelize.sync({ alter : true});
-	console.log("database connected");
+    await sequelize.sync();
+    console.log("database connected");
 })();

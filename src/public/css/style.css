@@ -1,0 +1,286 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    color: #000000;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    border: 0;
+    list-style: none;
+    outline: none;
+    resize: none;
+    text-decoration: none;
+}
+html{
+    font-size: 62.5%;
+}
+body{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    justify-content: space-between;
+}
+
+.banner{
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+}
+.banner .imgBx{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+.banner .imgBx img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: 0.5s;
+    background-position: center;
+}
+.banner .imgBx img.active{
+    opacity: 1;
+}
+.controlIzq{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+    width: 80px;
+}
+.controlDer{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 0;
+    width: 80px;
+}
+.controlIzq span{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+/*.controlIzq span:hover{
+    background: #ffeb3b;
+}*/
+.controlDer span{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+/*.controlDer span:hover{
+    background: #ffeb3b;
+}*/
+.contentBx{
+    position: absolute;
+    bottom: 0;
+    max-width: 700px;
+}
+.contentBx div{
+    display: none;
+}
+.contentBx div.active{
+    display: block;
+    padding: 30px;
+    padding-left: 100px;
+    background: rgba(0, 0, 0, 0.2);
+}
+.contentBx div h2{
+    color: #fff;
+    font-size: 3em;
+}
+.contentBx div p{
+    color: #fff;
+    font-size: 1.5em;
+}
+.contentBx div a{
+    color: #111;
+    font-size: 1.3em;
+    display: inline-block;
+    padding: 10px 30px;
+    background: #fff;
+    margin-top: 10px;
+    font-weight: 500;
+    text-decoration: none;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+.controlIzq > span, .controlDer > span{
+    color: #7E7F9A !important;
+    opacity: .6;
+    transition: .4s;
+}
+.material-icons.md-18 { font-size: 18px; }
+.material-icons.md-24 { font-size: 24px; }
+.material-icons.md-36 { font-size: 36px; }
+.material-icons.md-48 { font-size: 48px; }
+.controlIzq > span:hover, .controlDer > span:hover{
+    opacity: 1;
+    font-size: 36px;
+}
+
+/* The Modal (background) */
+form {
+    border: 3px solid #f1f1f1;
+}
+.login--btn{
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+.login--btn2{
+    border: none;
+    background-color: #f00;
+    cursor: pointer;
+    padding: 14px 20px;
+    margin: 8px 0;
+    width: 100%;
+    border-radius: 5px;
+    color: #fff;
+}
+.cancelbtn {
+    width: auto;
+    padding: 10px 18px;
+    background-color: #f00;
+    cursor: pointer;
+    border-radius: 5px;
+    color: #fff;
+}
+
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgb(0,0,0); 
+    background-color: rgba(0,0,0,0.4); 
+    padding: 8% 0;
+  }
+  .login--inpt{
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    border-radius: 5px;
+  }
+  .register--inpt{
+    width: 100%;
+    padding: 12px 20px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+  }
+  .register--inpt--center{
+      border-bottom: 0;
+  }
+  .stylereg--inpt{
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+      border-bottom: 0;
+  }
+  .stylereg--inpt2{
+      border-bottom-left-radius: 5px;
+      border-bottom-right-radius: 5px;
+  }
+  /* Modal Content/Box */
+  .modal-content {
+    background-color: #fefefe;
+    margin: 10px auto; 
+    border: 1px solid #888;
+    border-radius: 10px;
+    width: 350px; 
+  }
+  
+  /* The Close Button */
+  .close {
+
+    position: absolute;
+    right: 25px;
+    top: 52px;
+    color: #000;
+    font-size: 35px;
+    font-weight: bold;
+  }
+  
+  /* Close button on hover */
+  .close:hover,
+  .close:focus {
+    color: red;
+    cursor: pointer;
+  }
+  
+  /* Add Zoom Animation */
+  .animate {
+    -webkit-animation: animatezoom 0.6s;
+    animation: animatezoom 0.6s
+  }
+  .container__login{
+    padding: 16px;
+    border-radius: 10px;
+  }
+  .container__login__options{
+    display: flex;
+    justify-content: space-between;
+    padding: 16px;
+    border-radius: 10px;
+    background-color:#f1f1f1;
+  }
+  .container__login__options--span{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.2em;
+  }
+  .btn--register{
+      width: auto;
+      background-color: transparent;
+      color: #000000;
+      cursor: pointer;
+      font-size: 1.08em;
+  }
+  @-webkit-keyframes animatezoom {
+    from {-webkit-transform: scale(0)}
+    to {-webkit-transform: scale(1)}
+  }
+  
+  @keyframes animatezoom {
+    from {transform: scale(0)}
+    to {transform: scale(1)}
+  }
+
+@media (max-width: 1024px)
+{
+    .container__content
+    {
+        padding-left: calc(1024px * (1 / 24));
+        padding-right: calc(1024px * (1 / 24));
+    }
+}
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+    span.psw {
+      display: block;
+      float: none;
+    }
+    .cancelbtn {
+      width: 100%;
+    }
+  }

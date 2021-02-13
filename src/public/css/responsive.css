@@ -1,0 +1,31 @@
+.logo{
+    font-weight: 500;
+    font-size: 2.5em;
+}
+.list__ul__li--a{
+    font-size: 1.6em;
+}
+.container--register{
+    margin: 4vh 0;
+}
+.container__content--register{
+    width: 1300px;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+.f__content--register{
+    max-height: 500px;
+}
+.f__content--register img{
+    max-height: 370px;
+    object-fit: scale-down;
+}
+.data--btn{
+    font-size: 1.6em;
+}
+footer{
+    height: 464px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
