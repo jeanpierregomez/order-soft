@@ -1,13 +1,16 @@
-const LocalStrategy = require("passport-local").Strategy;
-const passport = require("passport");
 const { Usuario } = require("../repository/database").models;
 const ClienteController = require("../controllers/ClienteController");
+const LocalStrategy = require("passport-local").Strategy;
+const passport = require("passport");
 
 passport.serializeUser((user, done) => {
 	done(null, user.id);
 });
 
-passport.deserializeUser(async (id, done) => {});
+passport.deserializeUser(async (id, done) => {
+	const userDB = await Usuario.findByPk(id);
+	userDB ? done(null, userDB.dataValues) : done(null, false);
+});
 
 passport.use(
 	"local-signup",
@@ -21,11 +24,8 @@ passport.use(
 			const userDB = await Usuario.findOne({
 				where: { email },
 			});
-			if (!userDB) {
-				const clienteDB = await ClienteController.create(req);
-				if (clienteDB) return done(null, clienteDB.dataValues);
-			}
-			return done(null, false);
+			const clienteDB = !userDB ? await ClienteController.create(req) : null;
+			return clienteDB ? done(null, userDB.dataValues) : done(null, false);
 		}
 	)
 );
@@ -40,17 +40,11 @@ passport.use(
 		},
 		async (req, email, contrasena, done) => {
 			const userDB = await Usuario.findOne({
-				where: {
-					email,
-				},
+				where: { email },
 			});
-			if (!userDB) {
-				return done(null, false);
-			}
-			if (!userDB.comparePassword(contrasena)) {
-				return done(null, false);
-			}
-			done(null, userDB.dataValues);
+			return !userDB || !userDB.comparePassword(contrasena)
+				? done(null, false)
+				: done(null, userDB.dataValues);
 		}
 	)
 );
