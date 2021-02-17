@@ -27,12 +27,10 @@ module.exports = {
                 telefono,
                 direccion,
             });
-			if(clienteDB){
-				const carritoDB = await CarritoController.crear();
-				return clienteDB;
-			} 
-            
-            return false;
+            if (clienteDB) {
+                const carritoDB = await CarritoController.crear(clienteDB.id);
+                return carritoDB ? clienteDB : false;
+            }
         }
     },
 };
