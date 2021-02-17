@@ -4,7 +4,7 @@ module.exports = {
 	create: async ({ email, contrasena, id_rol }) => {
 		const userDB = await Usuario.create({
 			email,
-			contrasena: Usuario.encryptPassword(password),
+			contrasena: Usuario.encryptPassword(contrasena),
 			id_rol,
 		});
 		if (userDB) return userDB;

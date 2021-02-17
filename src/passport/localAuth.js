@@ -22,7 +22,7 @@ passport.use(
 				where: { email },
 			});
 			if (!userDB) {
-				const clienteDB = ClienteController.create(req);
+				const clienteDB = await ClienteController.create(req);
 				if (clienteDB) return done(null, clienteDB.dataValues);
 			}
 			return done(null, false);

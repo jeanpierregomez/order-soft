@@ -1,6 +1,5 @@
 const { Router } = require("express");
 const router = Router();
-const LoginController = require("../controllers/LoginController");
 const passport = require("passport");
 
 router.route("/").post();
