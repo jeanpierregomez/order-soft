@@ -30,7 +30,7 @@ module.exports = {
 			const carritoDB = clienteDB
 				? await CarritoController.create(clienteDB.id)
 				: null;
-			return carritoDB ? clienteDB : null;
+			return carritoDB ? userDB : null;
 		}
 		return null;
 	},

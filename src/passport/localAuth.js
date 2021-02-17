@@ -21,11 +21,12 @@ passport.use(
 			passReqToCallback: true,
 		},
 		async (req, email, contrasena, done) => {
+			req.logOut();
 			const userDB = await Usuario.findOne({
 				where: { email },
 			});
-			const clienteDB = !userDB ? await ClienteController.create(req) : null;
-			return clienteDB ? done(null, userDB.dataValues) : done(null, false);
+			const user = !userDB ? await ClienteController.create(req) : null;
+			return user ? done(null, user.dataValues) : done(null, false);
 		}
 	)
 );
@@ -39,10 +40,11 @@ passport.use(
 			passReqToCallback: true,
 		},
 		async (req, email, contrasena, done) => {
+			req.logOut();
 			const userDB = await Usuario.findOne({
 				where: { email },
 			});
-			return !userDB || !userDB.comparePassword(contrasena)
+			return !userDB || (userDB && !userDB.comparePassword(contrasena))
 				? done(null, false)
 				: done(null, userDB.dataValues);
 		}

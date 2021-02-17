@@ -1,5 +1,6 @@
 module.exports = {
-    index: (req, res) => {
-        res.render('index');
-    }
-}
+	index: (req, res) => {
+		console.log(req.user);
+		res.render("index");
+	},
+};
