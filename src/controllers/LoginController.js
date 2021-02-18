@@ -1,7 +1,5 @@
 module.exports = {
-    signin: (req, res) => {
-        res.json({
-            login: true
-        });
-    }
+    loginSupervisor: (req, res) => {
+        res.render('administrador/admin-login');
+    },
 }

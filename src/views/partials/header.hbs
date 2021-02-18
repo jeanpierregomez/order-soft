@@ -13,7 +13,9 @@
             </div>
         </div>
         <ul class="list__ul">
-            <li class="list__ul__li"><button class="login--btn cart--icon" onclick="openModal()">Login</button></li>
+            {{#unless user}}
+                <li class="list__ul__li"><button class="login--btn cart--icon" onclick="openModal()">Login</button></li>
+            {{/unless}}
             <li class="list__ul__li">
                 <div class="icon">
                     <a class="list__ul__li--a">Categorias</a>
