@@ -16,7 +16,7 @@ module.exports = {
 		const userDB = await UsuarioController.create({
 			contrasena,
 			email,
-			id_rol: 1,
+			id_rol: process.env.ROL_CLIENTE,
 		});
 		if (userDB) {
 			const clienteDB = await Cliente.create({
@@ -34,4 +34,5 @@ module.exports = {
 		}
 		return null;
 	},
+	getById: async (id) => await Cliente.findByPk(id),
 };

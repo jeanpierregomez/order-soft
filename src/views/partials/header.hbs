@@ -13,9 +13,12 @@
             </div>
         </div>
         <ul class="list__ul">
-            {{#unless user}}
-                <li class="list__ul__li"><button class="login--btn cart--icon" onclick="openModal()">Login</button></li>
-            {{/unless}}
+            {{#if user}}
+            <li class="list__ul__li"><a class="list__ul__li--a" href="">{{user.nombres}} {{user.apellidos}}</a></li>
+            <li class="list__ul__li"><button class="login--btn cart--icon">Logout</button></li>
+            {{else}}
+            <li class="list__ul__li"><button class="login--btn cart--icon" onclick="openModal()">Login</button></li>
+            {{/if}}
             <li class="list__ul__li">
                 <div class="icon">
                     <a class="list__ul__li--a">Categorias</a>
