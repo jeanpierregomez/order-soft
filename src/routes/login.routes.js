@@ -12,7 +12,7 @@ router.route("/").post(
 );
 router
 	.route("/supervisor")
-	.get(LoginController.loginSupervisor)
+	.get(LoginController.viewLoginSupervisor)
 	.post(
 		passport.authenticate("supervisor-signin", {
 			successRedirect: "/administrador/nuevo-producto",
@@ -27,6 +27,5 @@ router.route("/signup").post(
 		passReqToCallback: true,
 	})
 );
-router.route("/logout").get(LoginController.logout);
 
 module.exports = router;

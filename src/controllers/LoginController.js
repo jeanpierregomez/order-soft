@@ -1,5 +1,5 @@
 module.exports = {
-	loginSupervisor: (req, res) => {
+	viewLoginSupervisor: (req, res) => {
 		res.render("administrador/admin-login");
 	},
 	logout: (req, res) => {
