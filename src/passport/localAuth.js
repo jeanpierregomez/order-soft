@@ -4,11 +4,16 @@ const passport = require("passport");
 const UsuarioController = require("../controllers/UsuarioController");
 
 passport.serializeUser((user, done) => {
-	done(null, user.id);
+	done(null, { id: user.id, rol: user.id_rol });
 });
 
-passport.deserializeUser(async (id, done) => {
-	const userDB = await UsuarioController.getById(id);
+passport.deserializeUser(async ({ id, rol }, done) => {
+	let userDB;
+	if (rol == process.env.ROL_CLIENTE) {
+		userDB = await ClienteController.loadDataCliente(id);
+	} else {
+		userDB = await UsuarioController.getById(id);
+	}
 	userDB ? done(null, userDB.dataValues) : done(null, false);
 });
 
@@ -24,7 +29,7 @@ passport.use(
 			req.logOut();
 			const userDB = await UsuarioController.getByEmail(email);
 			const user = !userDB ? await ClienteController.create(req) : null;
-			return user ? done(null, user.dataValues) : done(null, false);
+			return user ? done(null, userDB.dataValues) : done(null, false);
 		}
 	)
 );

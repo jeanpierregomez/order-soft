@@ -1,4 +1,5 @@
 require("dotenv").config();
+require("./passport/localAuth");
 require("./repository/database");
 const express = require("express");
 const app = express();
@@ -6,7 +7,6 @@ const flash = require("connect-flash");
 const hbs = require("express-handlebars");
 const morgan = require("morgan");
 const passport = require("passport");
-require("./passport/localAuth");
 const path = require("path");
 const router = require("./routes/index.routes");
 const session = require("express-session");

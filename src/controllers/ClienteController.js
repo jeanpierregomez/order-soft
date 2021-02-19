@@ -35,4 +35,11 @@ module.exports = {
 		return null;
 	},
 	getById: async (id) => await Cliente.findByPk(id),
+	loadDataCliente: async function (id) {
+		const userDB = await UsuarioController.getById(id);
+		await this.getById(userDB.id).then(
+			(data) => (userDB.dataValues.cliente = data.dataValues)
+		);
+		return userDB;
+	},
 };
