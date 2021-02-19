@@ -15,8 +15,8 @@ router
 	.get(LoginController.loginSupervisor)
 	.post(
 		passport.authenticate("supervisor-signin", {
-			successRedirect: "/",
-			failureRedirect: "/",
+			successRedirect: "/administrador/nuevo-producto",
+			failureRedirect: "/login/supervisor",
 			passReqToCallback: true,
 		})
 	);

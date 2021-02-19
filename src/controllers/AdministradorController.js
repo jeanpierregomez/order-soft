@@ -11,4 +11,7 @@ module.exports = {
 		}
 		return res.redirect("/");
 	},
+	viewCreateProducto: (req, res)=>{
+		res.render('administrador/nuevo-producto');
+	},
 };
