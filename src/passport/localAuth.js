@@ -64,7 +64,6 @@ passport.use(
 			req.logOut();
 			const { id_rol } = req.body;
 			const userDB = await UsuarioController.getUserSupervisor(email, id_rol);
-			console.log(userDB)
 			return !userDB || (userDB && !userDB.comparePassword(contrasena))
 				? done(null, false)
 				: done(null, userDB.dataValues);
