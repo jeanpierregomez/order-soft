@@ -16,11 +16,12 @@
             </tr>
         </thead>
         <tbody>
+            {{#each productos}}
             <tr>
-                <td> Pizza de Pollo</td>
-                <td> Pizza</td>
-                <td> 5000 </td>
-                <td> revision </td>
+                <td>{{this.dataValues.nombre}}</td>
+                <td>{{this.dataValues.categoria}}</td>
+                <td>{{this.dataValues.precio}}</td>
+                <td>{{this.dataValues.estado}}</td>
                 <td>
                     <a href=""><span class="material-icons action-icon">update</span></a>
                     <a href=""><span class="material-icons action-icon">delete</span></a>
@@ -32,6 +33,7 @@
                     <a href=""><span class="material-icons action-icon">create</span></a>
                 </td>
             </tr>
+            {{/each}}
         </tbody>
     </table>
 </section>

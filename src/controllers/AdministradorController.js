@@ -1,6 +1,6 @@
 const CategoriaController = require("../controllers/CategoriaController");
+const EstadoProductoController = require("../controllers/EstadoProductoController");
 const UsuarioController = require("../controllers/UsuarioController");
-const Categoria = require("../repository/models/Categoria");
 const ProductoController = require("./ProductoController");
 
 module.exports = {
@@ -89,7 +89,16 @@ module.exports = {
 		const categorias = await CategoriaController.getCategorias();
 		res.render("administrador/nuevo-producto", { categorias });
 	},
-	viewProductos: (req, res) => {
-		res.render('administrador/admin-productos');
+	viewProductos: async (req, res) => {
+		const productos = await ProductoController.getProductos();
+		if (productos) {
+			productos.forEach(async producto => {
+				const categoriaDB = await CategoriaController.getById(producto.id_categoria);
+				const estadoDB = await EstadoProductoController.getById(producto.id_estado);
+				producto.setDataValue("categoria", categoriaDB.getDataValue("nombre"));
+				producto.setDataValue("estado", estadoDB.getDataValue("nombre"));
+			})
+		}
+		res.render('administrador/admin-productos' , { productos });
 	},
 };

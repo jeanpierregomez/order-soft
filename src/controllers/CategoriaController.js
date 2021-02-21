@@ -23,5 +23,6 @@ module.exports = {
         }
         return false;
     },
+    getById: async (id) => await Categoria.findByPk(id),
     getCategorias: async () => await Categoria.findAll(),
 };
