@@ -18,14 +18,35 @@ module.exports = {
 		if (categoria) {
 			req.flash("success", `Categoría ${categoria.nombre} creada correctamente`);
 		} else {
-			req.flash("error", `Ha ocurrido un error al crear la categoría ${categoria.nombre}`);		}
+			req.flash("error", `Ha ocurrido un error al crear la categoría ${categoria.nombre}`);		
+		}
 		return res.redirect("/administrador/categorias");
 	}, 	
+	deleteCategoria: async (req, res) => {
+		const { id } = req.body;
+		const categoria = await CategoriaController.delete(id);
+		if (categoria) {
+			req.flash("success", `Se ha eliminado correctamente la categoría ${categoria.nombre}!`);
+		} else {
+			req.flash("error", `La categoría que ha intentado eliminar no  existe!`);
+		}
+		return res.redirect("/administrador/categorias");
+	},
+	updateCategoria: async (req, res) => {
+		const categoria = await CategoriaController.update(req.body);
+		if (categoria) {
+			req.flash("success", `Categoría ${categoria.nombre} actualizada correctamente`);
+		} else {
+			req.flash("error", `Ha ocurrido un error al actualizar la categoría ${categoria.nombre}`);		
+		}
+		return res.redirect("/administrador/categorias");
+	},	
 	viewCategorias: async(req, res)=>{
 		const categorias = await CategoriaController.getCategorias();
 		res.render('administrador/admin-categorias', {categorias});
 	},
-	viewCreateProducto: (req, res)=>{
-		res.render('administrador/nuevo-producto');
+	viewCreateProducto: async (req, res)=>{
+		const categorias = await CategoriaController.getCategorias();
+		res.render('administrador/nuevo-producto', {categorias});
 	},
 };

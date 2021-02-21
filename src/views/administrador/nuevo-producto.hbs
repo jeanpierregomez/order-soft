@@ -15,9 +15,11 @@
 
                 <label class="data--lbl" for="categoria">Categoria</label>
                 <select class="data--inpt" name="id_categoria">
-                    <option value="1">
-                        pizzas
+                    {{#each categorias}}
+                    <option value="{{this.dataValues.id}}">
+                        {{this.dataValues.nombre}}
                     </option>
+                    {{/each}}
                 </select>
                 <label class="data--lbl" for="precio">Precio</label>
                 <input class="data--inpt" type="number" min="0" placeholder="Precio del producto" name="precio"
@@ -34,4 +36,4 @@
     </div>
 </section>
 {{> footer}}
-<script src="/js/preloadImage.js"></script>
+<script src="/js/administrador/nuevo-producto.js"></script>

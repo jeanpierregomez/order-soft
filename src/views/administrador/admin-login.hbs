@@ -5,15 +5,15 @@
         <div class="a_container__login">
             <form class="admin__form" action="/login/supervisor" method="POST">
                 <label class="admin__form--lbl" for="email">Email</label>
-                <input class="admin__form--inpt" type="email" placeholder="Correo electronico" name="email">
+                <input class="admin__form--inpt" type="email" placeholder="Correo electronico" name="email" required>
                 <label class="admin__form--lbl" for="passw">Contraseña</label>
-                <input class="admin__form--inpt" type="password" placeholder="Contraseña" name="contrasena">
+                <input class="admin__form--inpt" type="password" placeholder="Contraseña" name="contrasena" required>
                 <div class="admin__form--lbl">
-                    <input type="radio" name="id_rol" value="2">
+                    <input type="radio" name="id_rol" value="2" required>
                     <label for="email">administrador</label>
                 </div>
                 <div class="admin__form--lbl">
-                    <input type="radio" name="id_rol" value="3">
+                    <input type="radio" name="id_rol" value="3" required>
                     <label class="admin__form--lbl" for="email">supervisor</label>
                 </div>
                
