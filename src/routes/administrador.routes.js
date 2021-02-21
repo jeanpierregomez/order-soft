@@ -12,9 +12,8 @@ router
 	.post(AdministradorController.updateCategoria);
 router.route("/categorias").get(AdministradorController.viewCategorias);
 router.route("/categorias").post(AdministradorController.createCategoria);
-router
-	.route("/eliminar-categoria")
-	.post(AdministradorController.deleteCategoria);
+router.route("/eliminar-categoria").post(AdministradorController.deleteCategoria);
+router.route("/productos").get(AdministradorController.viewProductos);
 router
 	.route("/nuevo-producto")
 	.get(AdministradorController.viewCreateProducto)

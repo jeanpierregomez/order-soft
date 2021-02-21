@@ -89,4 +89,7 @@ module.exports = {
 		const categorias = await CategoriaController.getCategorias();
 		res.render("administrador/nuevo-producto", { categorias });
 	},
+	viewProductos: (req, res) => {
+		res.render('administrador/admin-productos');
+	},
 };
