@@ -1,0 +1,48 @@
+{{> administrador/header}}
+<!-- admin -->
+<link rel="stylesheet" href="/css/category.css">
+
+<h1 class="title-section">Producto {{producto.dataValues.nombre}}</h1>
+<section class="container__category">
+    <table class="table__content">
+        <thead>
+            <tr>
+                <th>Ingrediente</th>
+                <th>Cantidad</th>
+                <th>Precio</th>
+                <th>Agregar</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each ingredientes}}
+            <tr>
+                <td>{{this.dataValues.nombre}}</td>
+                <td>{{this.dataValues.stock}}</td>
+                <td>${{this.dataValues.precio}}</td>
+                <td>
+                    <input type="checkbox" name="ingrediente" value="{{this.dataValues.id}}">
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</section>
+<button class="category--btn" onclick="getIngredientes({{producto.dataValues.id}})">guardar</button>
+<script>
+    function getIngredientes(id) {
+        const ingredientes = Array.from(document.querySelectorAll('input:checked')).map(item => Number(item.value));
+        if (ingredientes.length) {
+            fetch(`${location.origin}/administrador/agregar-ingredientes`, {
+                method: 'POST',
+                body: {id, ingredientes}
+            })
+                .then(response => response.json())
+                .catch(error => console.error('Error:', error))
+                .then(response => console.log('Success:', response));
+            
+        } else {
+            window.location.replace(`${location.origin}/administrador/agregar-ingredientes/${id}`);
+        }
+    }
+</script>
+{{> footer}}

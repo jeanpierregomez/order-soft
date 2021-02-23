@@ -9,6 +9,8 @@ router.route("/create/:secret/:email").get(AdministradorController.create);
 router.use(IsAdmin);
 router.route("/actualizar-categoria").post(AdministradorController.updateCategoria);
 router.route("/actualizar-ingrediente").post(AdministradorController.updateIngrediente);
+router.route("/agregar-ingredientes/:id").get(AdministradorController.viewProductoIngrediente);
+router.route("/agregar-ingredientes").post(AdministradorController.setProductoIngrediente);
 router.route("/categorias").get(AdministradorController.viewCategorias);
 router.route("/categorias").post(AdministradorController.createCategoria);
 router.route("/eliminar-categoria").post(AdministradorController.deleteCategoria);

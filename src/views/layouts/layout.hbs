@@ -12,21 +12,21 @@
     <!-- footer -->
     <link rel="stylesheet" href="/css/footer.css">
 </head>
+
 <body>
     {{{body}}}
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="/js/alertas.js"></script>
-    <section>
-        {{#if success}}
-        <script>
-            success("{{success}}")
-        </script>
-        {{/if}}
-        {{#if error}}
-        <script>
-            error("{{error}}")
-        </script>
-        {{/if}}
-    </section>
+    {{#if success}}
+    <script>
+        success("{{success}}")
+    </script>
+    {{/if}}
+    {{#if error}}
+    <script>
+        error("{{error}}")
+    </script>
+    {{/if}}
 </body>
+
 </html>

@@ -16,9 +16,6 @@ html{
     font-size: 62.5%;
     height: 100%;
 }
-body{
-    height: 100%;
-}
 .wrapper{
     min-height: 100%;
     position: relative;
@@ -83,6 +80,7 @@ header{
     background-color: white;
 }
 .register__category{
+    margin-right: 1.5rem;
     width: 300px;
 }
 .register__category form{
@@ -97,7 +95,7 @@ header{
     color: #fff;
     cursor: pointer;
     border-radius: 5px;
-    margin-bottom: 40px;
+    margin-bottom: 10px;
     font-size: 1.4em;
 }
 .table__content{
@@ -151,7 +149,7 @@ header{
         padding: calc(1440px * (1 / 24));
         flex-direction: unset;
         align-items: center;
-        margin: 6vh 0;
+        /*margin: 6vh 0;*/
     }
     .table__content{
         padding-left: calc(1440px * (1 / 24));
@@ -161,8 +159,21 @@ header{
     }
     footer{
         height: 464px;
-        position: absolute;
+        /*position: absolute;
         bottom: 0;
-        left: 0;
+        left: 0;*/
     }
+}
+section {width: 100%; max-width: 1440px; margin: 0 auto;}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100vh;
+}
+.title-section {
+    padding-top: 2rem;
+    font-size: 3rem;
+    text-align: center;
 }
