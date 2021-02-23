@@ -162,7 +162,8 @@ module.exports = {
 	viewProductoIngrediente: async (req, res) => {
 		const id = req.params.id;
 		const producto = await ProductoController.getById(id);
-		const ingredientes = await IngredienteController.getIngredientes();
+		const id_ingredientes = await IngredienteProductoController.getCheck(id);
+		const ingredientes = await IngredienteController.getIngredientesNotCheck(id_ingredientes);
 		res.render("administrador/admin-producto-ingrediente.hbs", {
 			producto,
 			ingredientes,
