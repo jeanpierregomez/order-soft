@@ -96,6 +96,11 @@ module.exports = {
 		}
 		return res.redirect("/administrador/ingredientes");
 	},
+	deleteProductoIngrediente: async (req, res) => {
+		const { id, ingredientes } = req.body;
+		const result = await IngredienteProductoController.delete(id, ingredientes);
+		res.json({ result });
+	},
 	updateCategoria: async (req, res) => {
 		const categoria = await CategoriaController.update(req.body);
 		if (categoria) {
@@ -159,7 +164,7 @@ module.exports = {
 		}
 		res.render("administrador/admin-productos", { productos });
 	},
-	viewProductoIngrediente: async (req, res) => {
+	viewProductoIngredienteAgg: async (req, res) => {
 		const id = req.params.id;
 		const producto = await ProductoController.getById(id);
 		const id_ingredientes = await IngredienteProductoController.getCheck(id);
@@ -167,6 +172,18 @@ module.exports = {
 		res.render("administrador/admin-producto-ingrediente.hbs", {
 			producto,
 			ingredientes,
+			accion:'agregar'
+		});
+	},
+	viewProductoIngredienteDelete: async (req, res) => {
+		const id = req.params.id;
+		const producto = await ProductoController.getById(id);
+		const id_ingredientes = await IngredienteProductoController.getCheck(id);
+		const ingredientes = await IngredienteController.getIngredientesCheck(id_ingredientes);
+		res.render("administrador/admin-producto-ingrediente.hbs", {
+			producto,
+			ingredientes,
+			accion:'eliminar'
 		});
 	},
 };

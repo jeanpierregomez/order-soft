@@ -31,6 +31,21 @@ module.exports = {
         return false;
     },
     getById: async (id) => await Ingrediente.findByPk(id),
+    getIngredientes: async () => await Ingrediente.findAll(),
+    getIngredientesCheck: async (id_ingredientes) => {
+        if (id_ingredientes.length) {
+            return await Ingrediente.findAll({
+                where: {
+                    id: id_ingredientes,
+                },
+            });
+        }
+        return await Ingrediente.findAll({
+            where: {
+                [Op.not]: { id: id_ingredientes },
+            },
+        });
+    },
     getIngredientesNotCheck: async (id_ingredientes) => {
         if (id_ingredientes.length) {
             return await Ingrediente.findAll({

@@ -10,7 +10,7 @@
                 <th>Ingrediente</th>
                 <th>Cantidad</th>
                 <th>Precio</th>
-                <th>Agregar</th>
+                <th>{{accion}}</th>
             </tr>
         </thead>
         <tbody>
@@ -27,6 +27,6 @@
         </tbody>
     </table>
 </section>
-<button class="category--btn" onclick="getIngredientes({{producto.dataValues.id}})">guardar</button>
+<button class="category--btn" onclick="getIngredientes({{producto.dataValues.id}},'{{accion}}')">guardar</button>
 <script src="/js/administrador/admin-producto-ingrediente.js"></script>
 {{> footer}}
