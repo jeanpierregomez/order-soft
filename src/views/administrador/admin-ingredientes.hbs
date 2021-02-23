@@ -1,0 +1,57 @@
+{{> administrador/header}}
+<!-- admin -->
+<link rel="stylesheet" href="/css/category.css">
+
+<section class="container__category">
+    <div class="register__category">
+        <form action="/administrador/ingredientes" method="POST">
+            <label class="data--lbl" for="nombre">Nombre</label>
+            <input type="hidden" name="id" value="null">
+            <input class="data--inpt" type="text" placeholder="Nombre del Ingrediente" name="nombre" required>
+            <label class="data--lbl" for="stock">Cantidad</label>
+            <input class="data--inpt" type="number" min="1" placeholder="Cantidad del Ingrediente" name="stock"
+                required>
+            <label class="data--lbl" for="precio">Precio</label>
+            <input class="data--inpt" type="number" min="1" placeholder="$4500" name="precio" required>
+            <button class="category--btn">guardar</button>
+            <button id="id_cancelar" type="button" onclick="createIngrediente(this)" style="display: none;"
+                class="category--btn">cancelar</button>
+        </form>
+    </div>
+    <table class="table__content">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Cantidad</th>
+                <th>Precio</th>
+                <th>Acción</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each ingredientes}}
+            <tr>
+                <td>
+                    {{this.dataValues.nombre}}
+                </td>
+                <td>
+                    {{this.dataValues.stock}}
+                </td>
+                <td>
+                    ${{this.dataValues.precio}}
+                </td>
+                <td>
+                    <form action="/administrador/eliminar-ingrediente" method="post">
+                        <input type="hidden" name="id" value="{{this.dataValues.id}}">
+                        <span
+                            onclick="updateIngrediente({ id:{{this.dataValues.id}}, nombre:'{{this.dataValues.nombre}}', stock:{{this.dataValues.stock}},  precio:{{this.dataValues.precio}} });"
+                            class="material-icons action-icon">update</span>
+                        <button type="submit"><span class="material-icons action-icon">delete</span></button>
+                    </form>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</section>
+<script src="/js/administrador/admin-ingredientes.js"></script>
+{{> footer}}

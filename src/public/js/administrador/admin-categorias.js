@@ -9,7 +9,7 @@ function updateCategoria(id, nombre) {
 function createCategoria(e) {
     e.style.display = 'none';
     const form = document.forms[0];
-    form.action = '/administrador/categoria';
+    form.action = '/administrador/categorias';
     form.elements.namedItem('id').value = null;
     form.elements.namedItem('nombre').value = '';
 }

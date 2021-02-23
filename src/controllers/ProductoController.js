@@ -8,7 +8,7 @@ module.exports = {
         });
         return productoDB ? productoDB : false;
     },
-    getProductos: async () =>
+    getProductosE1: async () =>
         await Producto.findAll({
             where: { id_estado: process.env.PRODUCTO_REVISION },
         }),

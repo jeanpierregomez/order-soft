@@ -1,6 +1,7 @@
 const CategoriaController = require("../controllers/CategoriaController");
 const EstadoProductoController = require("../controllers/EstadoProductoController");
 const UsuarioController = require("../controllers/UsuarioController");
+const IngredienteController = require("../controllers/IngredienteController");
 const ProductoController = require("./ProductoController");
 
 module.exports = {
@@ -30,7 +31,22 @@ module.exports = {
 		}
 		return res.redirect("/administrador/categorias");
 	},
-	crearProducto: async (req, res) => {
+	createIngrediente: async (req, res) => {
+		const ingrediente = await IngredienteController.create(req.body);
+		if (ingrediente) {
+			req.flash(
+				"success",
+				`Ingrediente ${ingrediente.nombre} creada correctamente`
+			);
+		} else {
+			req.flash(
+				"error",
+				`Ha ocurrido un error al crear el ingrediente.`
+			);
+		}
+		return res.redirect("/administrador/ingredientes");
+	},
+	createProducto: async (req, res) => {
 		const { nombre, descripcion, id_categoria, precio } = req.body;
 		const imagen = req.file.originalname;
 		const productoDB = await ProductoController.create({
@@ -66,6 +82,19 @@ module.exports = {
 		}
 		return res.redirect("/administrador/categorias");
 	},
+	deleteIngrediente: async (req, res) => {
+		const { id } = req.body;
+		const ingrediente = await IngredienteController.delete(id);
+		if (ingrediente) {
+			req.flash(
+				"success",
+				`Se ha eliminado correctamente el ingrediente ${ingrediente.nombre}!`
+			);
+		} else {
+			req.flash("error", `EL ingrediente que ha intentado eliminar no  existe!`);
+		}
+		return res.redirect("/administrador/ingredientes");
+	},
 	updateCategoria: async (req, res) => {
 		const categoria = await CategoriaController.update(req.body);
 		if (categoria) {
@@ -81,6 +110,21 @@ module.exports = {
 		}
 		return res.redirect("/administrador/categorias");
 	},
+	updateIngrediente: async (req, res) => {
+		const ingrediente = await IngredienteController.update(req.body);
+		if (ingrediente) {
+			req.flash(
+				"success",
+				`Ingrediente ${ingrediente.nombre} actualizado correctamente`
+			);
+		} else {
+			req.flash(
+				"error",
+				`Ha ocurrido un error al actualizar el ingrediente ${ingrediente.nombre}`
+			);
+		}
+		return res.redirect("/administrador/ingredientes");
+	},
 	viewCategorias: async (req, res) => {
 		const categorias = await CategoriaController.getCategorias();
 		res.render("administrador/admin-categorias", { categorias });
@@ -89,8 +133,12 @@ module.exports = {
 		const categorias = await CategoriaController.getCategorias();
 		res.render("administrador/nuevo-producto", { categorias });
 	},
+	viewIngredientes: async (req, res)=>{
+		const ingredientes = await IngredienteController.getIngredientes();
+		res.render("administrador/admin-ingredientes",{ ingredientes });
+	},
 	viewProductos: async (req, res) => {
-		const productos = await ProductoController.getProductos();
+		const productos = await ProductoController.getProductosE1();
 		if (productos) {
 			productos.forEach(async producto => {
 				const categoriaDB = await CategoriaController.getById(producto.id_categoria);
