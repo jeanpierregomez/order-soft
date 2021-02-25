@@ -9,6 +9,7 @@ router.route("/create/:secret/:email").get(AdministradorController.create);
 router.use(IsAdmin);
 router.route("/actualizar-categoria").post(AdministradorController.updateCategoria);
 router.route("/actualizar-ingrediente").post(AdministradorController.updateIngrediente);
+router.route("/aprobar-producto").post(AdministradorController.aprobarProducto);
 router.route("/agregar-ingredientes/:id").get(AdministradorController.viewProductoIngredienteAgg);
 router.route("/agregar-ingredientes").post(AdministradorController.setProductoIngrediente);
 router.route("/categorias").get(AdministradorController.viewCategorias);
