@@ -7,27 +7,19 @@
     <aside class="aside">
         <h2>Categorias</h2>
         <ul>
+            {{#each categorias}}
             <li class="c-filter__li">
-                    <input class="c-filter__li--input" type="checkbox"  name="cboxname" id="cbox1"
-                        value="">
-                    <p>Perros</p>
+                <input class="c-filter__li--input" type="checkbox" name="cboxCategoriaName" id="cboxCategoriaId"
+                    value="{{this.dataValues.id}}" {{#if this.dataValues.check}}checked{{/if}}>
+                <p>{{this.dataValues.nombre}}</p>
             </li>
-            <li class="c-filter__li">
-                    <input class="c-filter__li--input" type="checkbox"  name="cboxname" id="cbox1"
-                        value="">
-                    <p>Perros</p>
-            </li>
-            <li class="c-filter__li">
-                    <input class="c-filter__li--input" type="checkbox"  name="cboxname" id="cbox1"
-                        value="">
-                    <p>Perros</p>
-            </li>
+            {{/each}}
         </ul>
 
         <h2>Precio</h2>
         <form class="form-price">
-            <input type="number" min="0" placeholder="Desde $">
-            <input type="number" min="0" placeholder="Hasta $">
+            <input type="number" min="{{minPrecio}}" max="{{maxPrecio}}" placeholder="Desde ${{minPrecio}}" required>
+            <input type="number" min="{{maxPrecio}}" max="{{maxPrecio}}" placeholder="Hasta ${{maxPrecio}}" required>
             <button type="button">Filtrar</button>
         </form>
     </aside>
@@ -35,9 +27,7 @@
         {{#each productos}}
         <div class="container__products">
             <div class="container__products--details">
-                <img class="container__products--img"
-                    src="/{{this.dataValues.imagen}}"
-                    alt="Producto">
+                <img class="container__products--img" src="/{{this.dataValues.imagen}}" alt="Producto">
                 <div class="container__products--title">
                     <p>
                         {{this.dataValues.nombre}}

@@ -1,4 +1,5 @@
-const { response } = require("express");
+const { Op } = require("sequelize");
+const CategoriaController = require("../controllers/CategoriaController");
 const Producto = require("../repository/models/Producto");
 
 module.exports = {
@@ -26,14 +27,69 @@ module.exports = {
             },
         }),
     getById: async (id) => await Producto.findByPk(id),
-    getProductosRevision: async () =>
+    getProductosRevision: async () => {
         await Producto.findAll({
             where: { id_estado: process.env.PRODUCTO_REVISION },
-        }),
-    viewListaProductos: async (req, res) => {
-        const productos = await Producto.findAll({
-            where: { id_estado: process.env.PRODUCTO_APROBADO },
         });
-        res.render("producto/lista-productos", { productos });
+    },
+    viewProductosBySearch: async (req, res) => {
+        const { data } = req.query;
+        const categorias = await CategoriaController.getCategorias();
+        const productos = await Producto.findAll({
+            where: {
+                id_estado: process.env.PRODUCTO_APROBADO,
+                [Op.or]: [
+                    { nombre: { [Op.like]: `%${data}%` } },
+                    { descripcion: { [Op.like]: `%${data}%` } },
+                ],
+            },
+        });
+        const maxPrecio = await Producto.max("precio", {
+            where: {
+                id_estado: process.env.PRODUCTO_APROBADO,
+                [Op.or]: [
+                    { nombre: { [Op.like]: `%${data}%` } },
+                    { descripcion: { [Op.like]: `%${data}%` } },
+                ],
+            },
+        });
+        const minPrecio = await Producto.min("precio", {
+            where: {
+                id_estado: process.env.PRODUCTO_APROBADO,
+                [Op.or]: [
+                    { nombre: { [Op.like]: `%${data}%` } },
+                    { descripcion: { [Op.like]: `%${data}%` } },
+                ],
+            },
+        });
+        res.render("producto/lista-productos", {
+            categorias,
+            productos,
+            maxPrecio,
+            minPrecio,
+        });
+    },
+    viewProductosByCategoria: async (req, res) => {
+        const id_categoria = req.params.id;
+        const categorias = await CategoriaController.getCategorias();
+        categorias.map((categoria) => {
+            const check = id_categoria == categoria.id;
+            categoria.setDataValue("check", check);
+        });
+        const productos = await Producto.findAll({
+            where: { id_estado: process.env.PRODUCTO_APROBADO, id_categoria },
+        });
+        const maxPrecio = await Producto.max("precio", {
+            where: { id_estado: process.env.PRODUCTO_APROBADO, id_categoria },
+        });
+        const minPrecio = await Producto.min("precio", {
+            where: { id_estado: process.env.PRODUCTO_APROBADO, id_categoria },
+        });
+        res.render("producto/lista-productos", {
+            categorias,
+            productos,
+            maxPrecio,
+            minPrecio,
+        });
     },
 };
