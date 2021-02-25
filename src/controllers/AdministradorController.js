@@ -6,6 +6,22 @@ const IngredienteProductoController = require("../controllers/IngredienteProduct
 const ProductoController = require("./ProductoController");
 
 module.exports = {
+    aprobarProducto: async (req, res) => {
+		const producto = await ProductoController.aprobar(req.body);
+        if (producto) {
+            req.flash(
+                "success",
+                `El producto ${producto.nombre} fue aprobado correctamente`
+            );
+        } else {
+            req.flash(
+                "error",
+                `Ha ocurrido un error al aprobar el producto ${producto.nombre}`
+            );
+        }
+        return res.redirect("/administrador/productos");
+        
+    },
 	create: async (req, res) => {
 		const { secret, email } = req.params;
 		if (secret == process.env.SECRET_ADMIN) {

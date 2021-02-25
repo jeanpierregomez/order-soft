@@ -5,15 +5,11 @@
                 <div class="f__category">
                     <p class="f--title">Categorias</p>
                     <ul class="f__ul">
-                       <li class="f__li">
-                                <a class="f__li--a" href="">categoria</a>
-                        </li>     
-                       <li class="f__li">
-                                <a class="f__li--a" href="">categoria</a>
-                        </li>     
-                       <li class="f__li">
-                                <a class="f__li--a" href="">categoria</a>
-                        </li>     
+                        {{#each categorias}}
+                        <li class="f__li">
+                            <a class="f__li--a" href="">{{this.dataValues.nombre}}</a>
+                        </li>
+                        {{/each}}
                     </ul>
                 </div>
                 <div class="f__help">

@@ -1,0 +1,63 @@
+{{> header}}
+<!-- Index -->
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/products.css">
+{{> modales}}
+<section class="main__container">
+    <aside class="aside">
+        <h2>Categorias</h2>
+        <ul>
+            <li class="c-filter__li">
+                    <input class="c-filter__li--input" type="checkbox"  name="cboxname" id="cbox1"
+                        value="">
+                    <p>Perros</p>
+            </li>
+            <li class="c-filter__li">
+                    <input class="c-filter__li--input" type="checkbox"  name="cboxname" id="cbox1"
+                        value="">
+                    <p>Perros</p>
+            </li>
+            <li class="c-filter__li">
+                    <input class="c-filter__li--input" type="checkbox"  name="cboxname" id="cbox1"
+                        value="">
+                    <p>Perros</p>
+            </li>
+        </ul>
+
+        <h2>Precio</h2>
+        <form class="form-price">
+            <input type="number" min="0" placeholder="Desde $">
+            <input type="number" min="0" placeholder="Hasta $">
+            <button type="button">Filtrar</button>
+        </form>
+    </aside>
+    <article class="list__products">
+        {{#each productos}}
+        <div class="container__products">
+            <div class="container__products--details">
+                <img class="container__products--img"
+                    src="/{{this.dataValues.imagen}}"
+                    alt="Producto">
+                <div class="container__products--title">
+                    <p>
+                        {{this.dataValues.nombre}}
+                    </p>
+                    <span>
+                        ${{this.dataValues.precio}}
+                    </span>
+                </div>
+            </div>
+            <div class="container__products--options">
+                <span>
+                    {{this.dataValues.descripcion}}
+                </span>
+                <form action="" method="post">
+                    <button name="id_producto" value="">Ver Producto</button>
+                </form>
+            </div>
+        </div>
+        {{/each}}
+    </article>
+</section>
+{{> footer}}
+<script src="/js/index.js"></script>

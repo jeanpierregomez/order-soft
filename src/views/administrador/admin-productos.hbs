@@ -40,7 +40,11 @@
                             class="fas fa-trash-alt action-icon"></i></a>
                 </td>
                 <td>
-                    <a href=""><span class="material-icons action-icon">create</span></a>
+                    <form action="/administrador/aprobar-producto" method="post">
+                        <input type="hidden" name="id" value="{{this.dataValues.id}}">
+                        <input type="hidden" name="nombre" value="{{this.dataValues.nombre}}">
+                        <button><span class="material-icons action-icon">create</span></button>
+                    </form>
                 </td>
             </tr>
             {{/each}}

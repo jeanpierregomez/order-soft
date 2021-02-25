@@ -119,6 +119,23 @@ header{
     color: #fff;
 }
 
+.c-filter__ul {
+    border-top: 1px solid gray;
+    padding-top: 2rem;
+    padding-bottom: 15px;
+    margin: 0 auto;
+    width: 75%;
+}
+.c-filter__li {
+    display: flex;
+    padding-bottom: 10px;
+}
+
+.c-filter__li--input { border: 1px solid gray; }
+
+.c-filter__li:last-child { padding-bottom: 0; }
+.c-filter__li--input { border: 1px solid gray; }
+.c-filter__li p{ padding-left: 15px; font-size: 12px;}
 @media (min-width: 1440px){
     .main__container{
         margin: 20px auto;

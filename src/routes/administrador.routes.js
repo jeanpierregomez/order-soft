@@ -8,6 +8,8 @@ router.route("/create/:secret/:email").get(AdministradorController.create);
 
 router.use(IsAdmin);
 
+router.route("/aprobar-producto").post(AdministradorController.aprobarProducto);
+
 router
 	.route("/actualizar-categoria")
 	.post(AdministradorController.updateCategoria);
