@@ -178,7 +178,7 @@ module.exports = {
 	},
 	viewUpdateProducto: async (req, res) => {},
 	viewProductos: async (req, res) => {
-		const productos = await ProductoController.getProductosE1();
+		const productos = await ProductoController.getProductosRevision();
 		if (productos) {
 			productos.forEach(async (producto) => {
 				const categoriaDB = await CategoriaController.getById(
