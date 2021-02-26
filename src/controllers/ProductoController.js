@@ -27,9 +27,56 @@ module.exports = {
             },
         }),
     getById: async (id) => await Producto.findByPk(id),
+    getProductosByCategoria: async (req, res) => {
+        const { categorias } = req.body;
+        const productos = await Producto.findAll({
+            where: {
+                id_estado: process.env.PRODUCTO_APROBADO,
+                id_categoria: categorias,
+            },
+        });
+        res.json(productos);
+    },
+    getProductosBySearch: async (req, res) => {
+        const { categorias, data } = req.body;
+        const productos = await Producto.findAll({
+            where: {
+                id_estado: process.env.PRODUCTO_APROBADO,
+                id_categoria: categorias,
+                [Op.or]: [
+                    { nombre: { [Op.like]: `%${data}%` } },
+                    { descripcion: { [Op.like]: `%${data}%` } },
+                ],
+            },
+        });
+        res.json(productos);
+    },
     getProductosRevision: async () => {
         await Producto.findAll({
             where: { id_estado: process.env.PRODUCTO_REVISION },
+        });
+    },
+    viewProductosByCategoria: async (req, res) => {
+        const id_categoria = req.params.id;
+        const categorias = await CategoriaController.getCategorias();
+        categorias.map((categoria) => {
+            const check = id_categoria == categoria.id;
+            categoria.setDataValue("check", check);
+        });
+        const productos = await Producto.findAll({
+            where: { id_estado: process.env.PRODUCTO_APROBADO, id_categoria },
+        });
+        const maxPrecio = await Producto.max("precio", {
+            where: { id_estado: process.env.PRODUCTO_APROBADO, id_categoria },
+        });
+        const minPrecio = await Producto.min("precio", {
+            where: { id_estado: process.env.PRODUCTO_APROBADO, id_categoria },
+        });
+        res.render("producto/lista-productos", {
+            categorias,
+            productos,
+            maxPrecio,
+            minPrecio,
         });
     },
     viewProductosBySearch: async (req, res) => {
@@ -67,29 +114,7 @@ module.exports = {
             productos,
             maxPrecio,
             minPrecio,
-        });
-    },
-    viewProductosByCategoria: async (req, res) => {
-        const id_categoria = req.params.id;
-        const categorias = await CategoriaController.getCategorias();
-        categorias.map((categoria) => {
-            const check = id_categoria == categoria.id;
-            categoria.setDataValue("check", check);
-        });
-        const productos = await Producto.findAll({
-            where: { id_estado: process.env.PRODUCTO_APROBADO, id_categoria },
-        });
-        const maxPrecio = await Producto.max("precio", {
-            where: { id_estado: process.env.PRODUCTO_APROBADO, id_categoria },
-        });
-        const minPrecio = await Producto.min("precio", {
-            where: { id_estado: process.env.PRODUCTO_APROBADO, id_categoria },
-        });
-        res.render("producto/lista-productos", {
-            categorias,
-            productos,
-            maxPrecio,
-            minPrecio,
+            data,
         });
     },
 };

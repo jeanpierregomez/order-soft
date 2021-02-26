@@ -6,11 +6,15 @@
 <section class="main__container">
     <aside class="aside">
         <h2>Categorias</h2>
+        {{#if data}}
+        <input type="hidden" id="idDataHidden" value="{{data}}">
+        {{/if}}
         <ul>
             {{#each categorias}}
             <li class="c-filter__li">
                 <input class="c-filter__li--input" type="checkbox" name="cboxCategoriaName" id="cboxCategoriaId"
-                    value="{{this.dataValues.id}}" {{#if this.dataValues.check}}checked{{/if}}>
+                    onclick="getProductos();" value="{{this.dataValues.id}}" {{#if
+                    this.dataValues.check}}checked{{/if}}>
                 <p>{{this.dataValues.nombre}}</p>
             </li>
             {{/each}}
@@ -23,7 +27,7 @@
             <button type="button">Filtrar</button>
         </form>
     </aside>
-    <article class="list__products">
+    <article class="list__products" id="productosJSON">
         {{#each productos}}
         <div class="container__products">
             <div class="container__products--details">
@@ -51,3 +55,52 @@
 </section>
 {{> footer}}
 <script src="/js/index.js"></script>
+<script>
+    function getDataHidden() {
+        try {
+            return document.getElementById('idDataHidden').value;
+        } catch (err) {
+            return false;
+        }
+    }
+
+    async function getProductos(data = getDataHidden()) {
+        const categorias = Array.from(document.querySelectorAll('input:checked')).map(item => Number(item.value));
+        const url = !data ? `producto/search/0` : `producto/search`;
+        let productos = '';
+        const body = JSON.stringify({ categorias, data });
+        const result = await fetch(`${location.origin}/${url}`, {
+            method: 'POST',
+            body,
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        }).then(response => response.json());
+        result.map(producto => {
+            productos += `
+                <div class="container__products">
+            <div class="container__products--details">
+                <img class="container__products--img" src="/${producto.imagen}" alt="Producto">
+                <div class="container__products--title">
+                    <p>
+                        ${producto.nombre}
+                    </p>
+                    <span>
+                        ${producto.precio}
+                    </span>
+                </div>
+            </div>
+            <div class="container__products--options">
+                <span>
+                    ${producto.descripcion}
+                </span>
+                <form action="" method="post">
+                    <button name="id_producto" value="">Ver Producto</button>
+                </form>
+            </div>
+        </div>
+            `;
+        });
+        document.getElementById('productosJSON').innerHTML = productos;
+    }
+</script>
