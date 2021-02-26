@@ -22,32 +22,22 @@
             {{else}}
             <li class="list__ul__li"><button class="login--btn cart--icon" onclick="openModal()">Login</button></li>
             {{/if}}
-            {{!-- <li class="list__ul__li">
+            <li class="list__ul__li">
                 <div class="icon">
                     <a class="list__ul__li--a">Categorias</a>
                     <div class="modal__cart">
                         <div class="modal__cart__content">
                             <ul>
+                                {{#each categorias}}
                                 <li>
-                                    <a href="">
-                                        categoria
-                                    </a>
+                                    <a href="/producto/search/{{this.dataValues.id}}">{{this.dataValues.nombre}}</a>
                                 </li>
-                                <li>
-                                    <a href="">
-                                        categoria
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="">
-                                        categoria
-                                    </a>
-                                </li>
+                                {{/each}}
                             </ul>
                         </div>
                     </div>
                 </div>
-            </li> --}}
+            </li>
             <li class="list__ul__li"><a class="list__ul__li--a" href="#">Preguntas</a></li>
             <li class="list__ul__li"><a class="list__ul__li--a" href="#">Contacto</a></li>
             <li class="list__ul__li"><a class="list__ul__li--a" onclick="openModal()">

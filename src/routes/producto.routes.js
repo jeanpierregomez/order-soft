@@ -2,6 +2,7 @@ const { Router } = require("express");
 const ProductoController = require("../controllers/ProductoController");
 const router = Router();
 
+router.route("/").post(ProductoController.viewProducto);
 router
     .route("/search/:id")
     .get(ProductoController.viewProductosByCategoria)

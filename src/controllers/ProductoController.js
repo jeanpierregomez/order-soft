@@ -1,5 +1,6 @@
 const { Op } = require("sequelize");
 const CategoriaController = require("../controllers/CategoriaController");
+const { findByPk } = require("../repository/models/Producto");
 const Producto = require("../repository/models/Producto");
 
 module.exports = {
@@ -55,6 +56,12 @@ module.exports = {
         await Producto.findAll({
             where: { id_estado: process.env.PRODUCTO_REVISION },
         });
+    },
+    viewProducto: async (req, res) => {
+        const { id } = req.body;
+        const categorias = await CategoriaController.getCategorias();
+        const producto = await Producto.findByPk(id);
+        res.render("producto/ver-producto", { categorias, producto });
     },
     viewProductosByCategoria: async (req, res) => {
         const id_categoria = req.params.id;

@@ -1,0 +1,61 @@
+{{> header}}
+<!-- Index -->
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/view_product.css">
+</head>
+{{> modales}}
+<div class="principal__container">
+    <div class="second__container">
+        <div class="second__container--img">
+            <img src="/{{producto.dataValues.imagen}}" alt="producto">
+        </div>
+        <div class="second__container--details">
+            <h2>{{producto.dataValues.nombre}}</h2>
+            <p>{{producto.dataValues.descripcion}}</p>
+            <form class="form">
+                <div class="details--price--quantity">
+                    <div class="details--price">
+                        <h3>Precio</h3>
+                        <span>${{producto.dataValues.precio}}</span>
+                    </div>
+                    <div class="star">
+                        <span class="material-icons">star</span>
+                        <span class="details--price--rating">45</span>
+                    </div>
+                    <div class="counter">
+                        <button class="subtract" disabled>-</button>
+                        <div>1</div>
+                        <button type="button">+</button>
+                    </div>
+                    {{#if user}}
+                    <button type="button" class="data-btn" onclick="openModal()">AÑADIR AL CARRITO</button>
+                    {{else}}
+                    <!-- <form action="cliente/agregarproducto" method="POST"> -->
+                    <a class="data-btn" href="">AÑADIR AL CARRITO</a>
+                    <!-- </form> -->
+                    {{/if}}
+                </div>
+                <textarea class="data--txt" name="desc" rows="9" cols="40"
+                    placeholder="Escribe instrucciones especiales"></textarea>
+                <button class="data-btn" type="button">COMPRAR</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="third__container">
+        <div class="user__rating">
+            <h4>
+                cristian
+            </h4>
+            <div class="rating__star">
+
+                <span class="material-icons">star</span> <!-- Estrella completa: star -->
+                <span class="material-icons">star_outline</span><!-- Estrella vacia: star_outline -->
+            </div>
+            <textarea class="data--txt" name="desc" rows="5" cols="40" disabled>Esto es un comentario</textarea>
+        </div>
+    </div>
+
+</div>
+{{> footer}}
+<script src="/js/index.js"></script>
