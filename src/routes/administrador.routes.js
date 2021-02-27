@@ -21,19 +21,17 @@ router
 router
 	.route("/actualizar-producto")
 	.get(AdministradorController.viewUpdateProducto)
-	.post(AdministradorController.updateProducto);
+	.post(upload.single("image"), AdministradorController.updateProducto);
 
 router
-	.route("/agregar-ingredientes")
+	.route("/agregar-ingredientes-producto")
+	.get(AdministradorController.viewProductoIngredienteAgg)
 	.post(AdministradorController.setProductoIngrediente);
 
 router
-	.route("/agregar-ingredientes/:id")
-	.get(AdministradorController.viewProductoIngredienteAgg);
-
-router.route("/categorias").get(AdministradorController.viewCategorias);
-
-router.route("/categorias").post(AdministradorController.createCategoria);
+	.route("/categorias")
+	.get(AdministradorController.viewCategorias)
+	.post(AdministradorController.createCategoria);
 
 router
 	.route("/eliminar-categoria")
@@ -44,19 +42,21 @@ router
 	.post(AdministradorController.deleteIngrediente);
 
 router
-	.route("/eliminar-ingredientes")
+	.route("/eliminar-ingredientes-producto")
+	.get(AdministradorController.viewProductoIngredienteDelete)
 	.post(AdministradorController.deleteProductoIngrediente);
-
-router
-	.route("/eliminar-ingredientes/:id")
-	.get(AdministradorController.viewProductoIngredienteDelete);
 
 router.route("/eliminar-producto").post(AdministradorController.deleteProducto);
 
-router.route("/ingredientes").get(AdministradorController.viewIngredientes);
-router.route("/ingredientes").post(AdministradorController.createIngrediente);
-router.route("/productos").get(AdministradorController.viewProductos);
-router.route("/productos").post(AdministradorController.createProducto);
+router
+	.route("/ingredientes")
+	.get(AdministradorController.viewIngredientes)
+	.post(AdministradorController.createIngrediente);
+
+router
+	.route("/productos")
+	.get(AdministradorController.viewProductos)
+	.post(AdministradorController.createProducto);
 
 router
 	.route("/nuevo-producto")

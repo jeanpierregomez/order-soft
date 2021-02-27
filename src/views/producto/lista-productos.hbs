@@ -45,10 +45,11 @@
                 <span>
                     {{this.dataValues.descripcion}}
                 </span>
-                <form action="/producto/" method="post">
+                <a href="/producto/{{this.dataValues.id}}"></a>
+                {{!-- <form action="/producto/" method="post">
                     <input type="hidden" name="id" value="{{this.dataValues.id}}">
                     <button>Ver Producto</button>
-                </form>
+                </form> --}}
             </div>
         </div>
         {{/each}}

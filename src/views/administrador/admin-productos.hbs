@@ -24,8 +24,12 @@
                 <td>${{this.dataValues.precio}}</td>
                 <td>{{this.dataValues.estado}}</td>
                 <td>
-                    <a href="/administrador/actualizar-producto/{{this.dataValues.id}}"><span
-                            class="material-icons action-icon">update</span></a>
+                    <form action="/administrador/actualizar-producto" method="get">
+                        <input type="hidden" name="id_producto" value="{{this.dataValues.id}}">
+                        <button class="btn-icon" type="submit">
+                            <span class="material-icons action-icon">update</span>
+                        </button>
+                    </form>
                     <form action="/administrador/eliminar-producto" method="post">
                         <input type="hidden" name="id_producto" value="{{this.dataValues.id}}">
                         <button class="btn-icon" type="submit">
@@ -34,10 +38,18 @@
                     </form>
                 </td>
                 <td>
-                    <a href="/administrador/agregar-ingredientes/{{this.dataValues.id}}"><i
-                            class="fas fa-bacon action-icon"></i></a>
-                    <a href="/administrador/eliminar-ingredientes/{{this.dataValues.id}}"><i
-                            class="fas fa-trash-alt action-icon"></i></a>
+                    <form action="/administrador/agregar-ingredientes-producto" method="get">
+                        <input type="hidden" name="id_producto" value="{{this.dataValues.id}}">
+                        <button class="btn-icon" type="submit">
+                            <i class="fas fa-bacon action-icon"></i>
+                        </button>
+                    </form>
+                    <form action="/administrador/eliminar-ingredientes-producto" method="get">
+                        <input type="hidden" name="id_producto" value="{{this.dataValues.id}}">
+                        <button class="btn-icon" type="submit">
+                            <span class="material-icons action-icon">delete</span>
+                        </button>
+                    </form>
                 </td>
                 <td>
                     <form action="/administrador/aprobar-producto" method="post">
