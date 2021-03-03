@@ -1,0 +1,63 @@
+{{> header}}
+<!-- Index -->
+<link rel="stylesheet" href="/css/carrito.css">
+{{> modales}}
+<div class="parent__container">
+    <div class="child__container">
+        <h1>Mi Carrito</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th>Producto</th>
+                    <th>Precio</th>
+                    <th>Cantidad</th>
+                    <th>Subtotal</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="product-remove">
+                        <form action="" method="post">
+                            <button class="remove" name="data" value="">x</button>
+                        </form>
+                    </td>
+                    <td><img src="" alt=""></td>
+                    <td><a href="" class="title">
+                            nombre
+                        </a></td>
+                    <td><span>$55</span></td>
+                    <td>
+                        <div class="counter">
+                            <button class="subtract" disabled>-</button>
+                            <div>
+                                1
+                            </div>
+                            <button>+</button>
+                        </div>
+                    </td>
+                    <td><span>$999 </span></td>
+                </tr>
+
+                ?>
+            </tbody>
+        </table>
+        <table class="total__price">
+            <tbody>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>Total</td>
+                    <td>$
+                        total
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+{{> footer}}
+<script src="/js/index.js"></script>
